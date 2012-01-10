@@ -2,7 +2,7 @@
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='%{$fg[$NCOLOR]%}%n%{$fg[green]%}@%m%{$reset_color%} %{$fg[blue]%}%~ \
+PROMPT='%{$fg_bold[$NCOLOR]%}%n%{$fg_bold[green]%}@%m%{$reset_color%} %{$fg_bold[blue]%}%~ \
 $(git_prompt_info)\
 %{$fg[red]%}%(!.#.»)%{$reset_color%} '
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
