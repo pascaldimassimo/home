@@ -65,6 +65,10 @@ export NUTCH_LOG_DIR="./logs"
 export ES_JAVA_OPTS="-server"
 export ES_MAX_MEM="2g"
 
+# include if it exists
+if [ -f ~/.local_vars ]; then
+   source ~/.local_vars
+fi
 
 PATH=$HBASE_HOME/bin:$HADOOP_HOME/bin:$MAHOUT_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NUTCH_RUNTIME_HOME/bin:$ANT_HOME/bin:$GANT_HOME/bin:$GROOVY_HOME/bin:$LUNR_HOME/bin:$PATH
 
