@@ -42,6 +42,9 @@ alias p='pgrep -lf'
 alias t='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list tasks'
 alias h='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list home'
 
+# Misc
+alias cleansvn='find . -name \.svn -exec rm -rf {} \;'
+
 # PH
 export PH=~/sematext/st-ProjectHub
 
@@ -57,6 +60,7 @@ export GROOVY_HOME=~/java/groovy-1.8.2
 export GANT_HOME=~/java/gant-1.9.1
 export LUNR_HOME=~/lunr
 export ANDROID_HOME=~/java/android-sdk-mac_x86
+export GRAILS_HOME=~/java/grails-2.0.0
 
 export NUTCH_CONF_DIR="./conf"
 export NUTCH_LOG_DIR="./logs"
@@ -70,7 +74,7 @@ if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=$HBASE_HOME/bin:$HADOOP_HOME/bin:$MAHOUT_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NUTCH_RUNTIME_HOME/bin:$ANT_HOME/bin:$GANT_HOME/bin:$GROOVY_HOME/bin:$LUNR_HOME/bin:$PATH
+PATH=$HBASE_HOME/bin:$HADOOP_HOME/bin:$MAHOUT_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NUTCH_RUNTIME_HOME/bin:$ANT_HOME/bin:$GANT_HOME/bin:$GROOVY_HOME/bin:$LUNR_HOME/bin:$GRAILS_HOME/bin:$PATH
 
 # load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
