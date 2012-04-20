@@ -1,3 +1,5 @@
 [user]
 	name = Pascal Dimassimo
 	email = pascal@pascaldimassimo.com
+[color]
+	ui = auto

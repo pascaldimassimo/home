@@ -33,7 +33,7 @@ export SVN_EDITOR=vim
 # Alias
 alias mvim="mvim --remote-tab-silent"
 alias tailf="tail -f"
-alias f='find . -name'
+alias f='find . -iname'
 alias rm='rm -rf'
 alias g='grep -rl'
 alias p='pgrep -lf'
@@ -44,6 +44,13 @@ alias h='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list home'
 
 # Misc
 alias cleansvn='find . -name \.svn -exec rm -rf {} \;'
+
+# Grep into folder by file type
+function gg {
+ filter=*
+ if [[ -n $2 ]]; then filter=*.$2; fi
+ grep --include=$filter -irl $1 . 2> /dev/null
+}
 
 # PH
 export PH=~/sematext/st-ProjectHub
@@ -61,6 +68,7 @@ export GANT_HOME=~/java/gant-1.9.1
 export LUNR_HOME=~/lunr
 export ANDROID_HOME=~/java/android-sdk-mac_x86
 export GRAILS_HOME=~/java/grails-2.0.0
+export PLAY_HOME=~/java/play-1.2.4
 
 export NUTCH_CONF_DIR="./conf"
 export NUTCH_LOG_DIR="./logs"
@@ -74,7 +82,7 @@ if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=$HBASE_HOME/bin:$HADOOP_HOME/bin:$MAHOUT_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NUTCH_RUNTIME_HOME/bin:$ANT_HOME/bin:$GANT_HOME/bin:$GROOVY_HOME/bin:$LUNR_HOME/bin:$GRAILS_HOME/bin:$PATH
+PATH=$HBASE_HOME/bin:$HADOOP_HOME/bin:$MAHOUT_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NUTCH_RUNTIME_HOME/bin:$ANT_HOME/bin:$GANT_HOME/bin:$GROOVY_HOME/bin:$LUNR_HOME/bin:$GRAILS_HOME/bin:$PLAY_HOME:$PATH
 
 # load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
