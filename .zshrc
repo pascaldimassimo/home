@@ -82,7 +82,7 @@ if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=$HBASE_HOME/bin:$HADOOP_HOME/bin:$MAHOUT_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$NUTCH_RUNTIME_HOME/bin:$ANT_HOME/bin:$GANT_HOME/bin:$GROOVY_HOME/bin:$LUNR_HOME/bin:$GRAILS_HOME/bin:$PLAY_HOME:$PATH
+PATH=~/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 # load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
