@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 if [ -d .git ]; then
-   echo "This project is already using git!"
+	echo "This project is already using git!"
 	exit 1
 fi
 
 ORIGIN=~/Dropbox/repos/${PWD##*/}
 if [ -d $ORIGIN ]; then
-   echo "This project already have a git repo!"
+	echo "This project already have a git repo!"
 	exit 1
 fi
 
 if [ ! -f .gitignore ]; then
-   echo "No .gitignore file found!"
+	echo "No .gitignore file found!"
 	exit 1
 fi
 
@@ -42,4 +42,3 @@ fi
 git add \*
 git commit -m "First commit"
 git push origin master
-
