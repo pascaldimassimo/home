@@ -83,7 +83,7 @@ if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=~/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 # load RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

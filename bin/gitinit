@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+if [ -d .git ]; then
+   echo "This project is already using git!"
+	exit 1
+fi
+
+ORIGIN=~/Dropbox/repos/${PWD##*/}
+if [ -d $ORIGIN ]; then
+   echo "This project already have a git repo!"
+	exit 1
+fi
+
+if [ ! -f .gitignore ]; then
+   echo "No .gitignore file found!"
+	exit 1
+fi
+
+# Git init
+git init
+
+# Keep current folder
+PROJECT=`pwd`
+
+# Git init ORIGIN folder
+mkdir $ORIGIN
+cd $ORIGIN
+git init --bare
+
+# Get back to project
+cd $PROJECT
+git remote add origin $ORIGIN
+
+if [[ $1 == '--nocommit' ]]; then
+	echo "Next steps:"
+	echo "- git add \*"
+	echo "- git commit -m 'First commit'"
+	echo "- git push origin master"
+	exit
+fi
+
+git add \*
+git commit -m "First commit"
+git push origin master
+
