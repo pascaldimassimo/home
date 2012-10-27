@@ -85,5 +85,5 @@ fi
 
 PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
-# load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin 
