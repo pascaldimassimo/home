@@ -38,6 +38,7 @@ alias rm='rm -rf'
 alias g='grep -rl'
 alias p='pgrep -lf'
 alias mou='open -a Mou'
+alias less='less -i'
 
 # Task manager
 alias t='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list tasks'
