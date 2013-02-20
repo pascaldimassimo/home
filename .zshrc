@@ -57,8 +57,12 @@ function gg {
 # PH
 export PH=~/sematext/st-ProjectHub
 
-# Java
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+# Java 6
+#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+
+# Java 7
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 #export MAHOUT_HOME=~/java/mahout-trunk
 #export HADOOP_HOME=~/java/hadoop-0.20.203.0
 #export HBASE_HOME=~/java/hbase-0.90.3
