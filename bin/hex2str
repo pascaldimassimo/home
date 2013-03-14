@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# In Cassandra, if the data is in bytes, the cli will show them as a sequence of hex char.
+# For example, the sequence 2441 is the string "$A". 24 is the hex representation of the '$'' char and 41 is the hex representation of the 'A' char.
+
+exit 1 if ARGV.length == 0
+
+# Must contain an even number of characters
+input = ARGV[0]
+exit 1 if input.length % 2 != 0
+
+# Convert each 2 characters into a byte
+bytes = []
+input.scan(/../).each do |hex|
+	bytes << hex.to_i(16)
+end
+
+# Decode the byte array as UTF-8
+puts bytes.pack('C*').force_encoding('utf-8')
