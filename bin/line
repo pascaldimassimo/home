@@ -1,0 +1,6 @@
+#!/bin/bash
+# EXAMPLE USAGE: line my_list | xargs -I {} cp {} new_folder
+while read line           
+do           
+    echo "$line"           
+done < $1
