@@ -3,3 +3,5 @@
 	email = pascal@pascaldimassimo.com
 [color]
 	ui = auto
+[alias]
+	undo = reset --hard HEAD
