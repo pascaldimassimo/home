@@ -54,6 +54,8 @@ function gg {
  grep --include=$filter -irl $1 . 2> /dev/null
 }
 
+function anti {antiword $@ | less}
+
 # PH
 export PH=~/sematext/st-ProjectHub
 

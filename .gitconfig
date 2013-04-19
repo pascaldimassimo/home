@@ -5,3 +5,5 @@
 	ui = auto
 [alias]
 	undo = reset --hard HEAD
+	st   = status -sb
+	lg   = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
