@@ -21,7 +21,7 @@ export ZSH_THEME="pascal"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git svn brew extract)
+plugins=(svn brew extract)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -39,6 +39,10 @@ alias g='grep -rl'
 alias p='pgrep -lf'
 alias mou='open -a Mou'
 alias less='less -i'
+alias l='ls -la'
+alias lt='ls -lat | less'
+alias lth='ls -lat | head'
+
 
 # Task manager
 alias t='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list tasks'
@@ -60,10 +64,10 @@ function anti {antiword $@ | less}
 export PH=~/sematext/st-ProjectHub
 
 # Java 6
-#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 
 # Java 7
-export JAVA_HOME=$(/usr/libexec/java_home)
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
 #export MAHOUT_HOME=~/java/mahout-trunk
 #export HADOOP_HOME=~/java/hadoop-0.20.203.0
@@ -77,6 +81,7 @@ export LUNR_HOME=~/lunr
 export ANDROID_HOME=~/java/android-sdk-mac_x86
 export GRAILS_HOME=~/java/grails-2.0.0
 export PLAY_HOME=~/java/play-1.2.4
+export SONAR_RUNNER_HOME=~/java/sonar-runner-2.2
 
 export NUTCH_CONF_DIR="./conf"
 export NUTCH_LOG_DIR="./logs"
@@ -90,7 +95,7 @@ if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$PATH
 
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
