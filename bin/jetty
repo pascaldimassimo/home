@@ -1,0 +1,2 @@
+#!/bin/bash
+java -Xmx512m -jar ~/java/jetty-runner-8.1.9.v20130131.jar "$@"
