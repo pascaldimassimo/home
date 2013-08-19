@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require 'nokogiri'
+require 'open-uri'
+require 'json'
+
+doc = Nokogiri::HTML(open('http://www.999thebuzz.com/page.php?page_id=59'))
+
+def parse(line, filename, songs)
+	if line =~ /^#([1-9])\-\s*(.+)\"(.+)\"$/		
+	 	songs[$1] = [$2.strip, $3.strip]
+	# date
+	elsif line =~ /^([0-9]+)\/([0-9]+)$/
+	 	month = $1
+	 	day = $2
+	 	filename << "#{day}-#{month}-#{Time.now.year}.json"
+	# new format august 2013
+	elsif line.include? "\n"		
+		line.split("\n").each do |subline| 
+			subline.strip!
+			next if subline.empty?
+			parse(subline, filename, songs)
+		end		
+	end
+end
+
+songs = {}
+filename = []
+doc.css('strong').each do |strong|
+	parse(strong.content, filename, songs)
+end
+
+if filename.size != 1
+	puts "Invalid filename!"
+	exit 1
+end
+filename = filename[0]
+
+path = "/Users/pascal/buzz/#{filename}"
+if File.exist? path
+	puts "#{filename} already exist!"
+	exit 1
+end
+
+File.open(path, 'w') {|f| f.write(songs.to_json) }
+puts "#{filename} saved!"
+
