@@ -64,10 +64,10 @@ function anti {antiword $@ | less}
 export PH=~/sematext/st-ProjectHub
 
 # Java 6
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+#export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 
 # Java 7
-#export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 #export MAHOUT_HOME=~/java/mahout-trunk
 #export HADOOP_HOME=~/java/hadoop-0.20.203.0
@@ -89,6 +89,9 @@ export NUTCH_LOG_DIR="./logs"
 # Elasticsearch settings
 export ES_JAVA_OPTS="-server"
 export ES_MAX_MEM="2g"
+
+# Maven
+export MAVEN_OPTS=-Xmx1024m
 
 # include if it exists
 if [ -f ~/.local_vars ]; then
