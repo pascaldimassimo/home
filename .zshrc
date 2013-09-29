@@ -40,8 +40,8 @@ alias p='pgrep -lf'
 alias mou='open -a Mou'
 alias less='less -i'
 alias l='ls -la'
-alias lt='ls -lat | less'
-alias lth='ls -lat | head'
+alias lt='ls -lath | less'
+alias lth='ls -lath | head'
 
 
 # Task manager

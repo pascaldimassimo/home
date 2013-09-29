@@ -4,7 +4,8 @@
 [color]
 	ui = auto
 [alias]
-	nuke = reset --hard HEAD
-	undo = git reset HEAD~1
-	st   = status -sb
-	lg   = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	nuke 	= reset --hard HEAD
+	undo 	= reset HEAD~1
+	st   	= status -sb
+	lg   	= log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+	wdiff 	= diff --color-words

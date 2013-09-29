@@ -6,7 +6,7 @@ require 'json'
 
 doc = Nokogiri::HTML(open('http://www.999thebuzz.com/page.php?page_id=59'))
 
-def parse(line, filename, songs)
+def parse(line, filename, songs)	
 	if line =~ /^#([1-9])\-\s*(.+)\"(.+)\"$/		
 	 	songs[$1] = [$2.strip, $3.strip]
 	# date
@@ -28,6 +28,10 @@ songs = {}
 filename = []
 doc.css('strong').each do |strong|
 	parse(strong.content, filename, songs)
+end
+# New format september 2013
+doc.css('div.module div b').each do |elem|	
+	parse(elem.content, filename, songs)
 end
 
 if filename.size != 1
