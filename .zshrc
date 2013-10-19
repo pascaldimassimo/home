@@ -37,6 +37,7 @@ alias f='find . -iname'
 alias rm='rm -rf'
 alias g='grep -rl'
 alias p='pgrep -lf'
+alias k='pkill -lf'
 alias mou='open -a Mou'
 alias less='less -i'
 alias l='ls -la'
@@ -82,6 +83,10 @@ export ANDROID_HOME=~/java/android-sdk-mac_x86
 export GRAILS_HOME=~/java/grails-2.0.0
 export PLAY_HOME=~/java/play-1.2.4
 export SONAR_RUNNER_HOME=~/java/sonar-runner-2.2
+export M2_HOME=~/java/apache-maven-3.1.1
+
+export M2=$M2_HOME/bin
+export MAVEN_OPTS="-Xms256m -Xmx512m"
 
 export NUTCH_CONF_DIR="./conf"
 export NUTCH_LOG_DIR="./logs"
@@ -90,15 +95,12 @@ export NUTCH_LOG_DIR="./logs"
 export ES_JAVA_OPTS="-server"
 export ES_MAX_MEM="2g"
 
-# Maven
-export MAVEN_OPTS=-Xmx1024m
-
 # include if it exists
 if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$PATH
+PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$M2:$PATH
 
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
