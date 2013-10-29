@@ -9,3 +9,5 @@
 	st   	= status -sb
 	lg   	= log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	wdiff 	= diff --color-words
+[push]
+	default = simple

@@ -61,6 +61,13 @@ function gg {
 
 function anti {antiword $@ | less}
 
+function rdiff {
+ if [[ $# -lt 2 ]]; then echo "USAGE rdiff DIR1 DIR2 [pattern]"; return 1; fi
+ pattern=*
+ if [[ -n $3 ]]; then pattern=$3; fi
+ find $1 -iname $pattern -type f -exec sh -c 'x={}; y=$1/; path=${x#$y}; diff -bq $1 $2/$path' _ $1 $2 \;
+}
+
 # PH
 export PH=~/sematext/st-ProjectHub
 
@@ -86,7 +93,7 @@ export SONAR_RUNNER_HOME=~/java/sonar-runner-2.2
 export M2_HOME=~/java/apache-maven-3.1.1
 
 export M2=$M2_HOME/bin
-export MAVEN_OPTS="-Xms256m -Xmx512m"
+export MAVEN_OPTS="-Xms256m -Xmx2g"
 
 export NUTCH_CONF_DIR="./conf"
 export NUTCH_LOG_DIR="./logs"
