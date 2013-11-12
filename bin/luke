@@ -1,0 +1,2 @@
+#!/bin/bash
+java -Xmx2g -jar /Users/pascal/java/luke/target/luke-4.5.0-jar-with-dependencies.jar -index $1 &

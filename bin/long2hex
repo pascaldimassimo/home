@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+if ARGV.length != 1
+	puts "USAGE: long2hex VALUE"
+	exit 1
+end
+
+class String
+  def numeric?
+    Float(self) != nil rescue false
+  end
+end
+
+unless ARGV[0].numeric?
+	puts "ERROR: Invalid value '#{ARGV[0]}'"
+	exit 1
+end
+
+input = ARGV[0].to_i
+
+def fromLong(n, len)
+	b = []
+	0.upto(len-1) do |i|
+		b[len - i - 1] = n & 0xff
+		n >>= 8
+	end
+	b
+end
+
+output = ""
+bytes = fromLong(input, 8)
+bytes.each do |b|
+	output += sprintf("%02x", b)
+end
+
+puts output

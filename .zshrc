@@ -65,7 +65,7 @@ function rdiff {
  if [[ $# -lt 2 ]]; then echo "USAGE rdiff DIR1 DIR2 [pattern]"; return 1; fi
  pattern=*
  if [[ -n $3 ]]; then pattern=$3; fi
- find $1 -iname $pattern -type f -exec sh -c 'x={}; y=$1/; path=${x#$y}; diff -bq $1 $2/$path' _ $1 $2 \;
+ find $1 -iname $pattern -type f -exec sh -c 'x={}; y=$1/; path=${x#$y}; diff -bq {} $2/$path' _ $1 $2 \;
 }
 
 # PH

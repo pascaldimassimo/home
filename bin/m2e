@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+if ARGV.size > 0 and ARGV[0] != "wtp"
+	puts "USAGE: m2e [wtp]"
+	exit 1
+end
+
+wtp = "-Dwtpversion=2.0" if ARGV.size > 0
+system "mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs #{wtp}"

@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# See http://www.epochconverter.com/
+# See http://stackoverflow.com/questions/7816365/how-to-convert-a-unix-timestamp-seconds-since-epoch-to-ruby-datetime
+# See http://mentalized.net/journal/2011/04/14/ruby_how_to_check_if_a_string_is_numeric/
+
+if ARGV.length != 1
+	puts "USAGE: epoch2date TIMESTAMP"
+	exit 1
+end
+
+class String
+  def numeric?
+    Float(self) != nil rescue false
+  end
+end
+
+unless ARGV[0].numeric?
+	puts "ERROR: Invalid timestamp '#{ARGV[0]}'"
+	exit 1
+end
+
+require 'date'
+
+ts = ARGV[0].to_f
+# If the timestamp is in seconds, we will have 10 chars. But 13 is in milli.
+if ARGV[0].size == 13
+	puts "Assuming milliseconds..."
+	ts = ts / 1000
+end
+
+puts Time.at(ts).to_datetime
