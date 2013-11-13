@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+require 'rest_client'
+
+def print_line(symbol, value, current_value)
+	variation = ((current_value - value) / value) * 100
+	sign = "+" if variation >= 0
+	puts "#{symbol}:\t#{value.to_s.ljust(10)}-> #{('%.2f' % current_value).ljust(10)}(#{sign}#{'%.2f' % variation}%)"
+end
+
+def print_separator
+	puts ("-" * 39)
+end
+
+def print_header(rate)
+	puts "Folio on #{Time.now.strftime("%d/%m/%Y %H:%M")}" 
+	puts "Rate USD->CAD: #{rate}"
+	print_separator
+end
+
+input = "/Users/pascal/pascal/folio.csv"
+
+symbols = []
+sizes = []
+values = []
+array_usd = []
+
+File.readlines(input).each do |line|
+	symbol,size,value,usd = line.split ";"
+	symbols << symbol
+	sizes << size.to_i
+	values << value.to_f		
+	array_usd << (usd.strip == 'true')	
+end
+
+# See http://www.gummy-stuff.org/Yahoo-data.htm
+# Add the exchange rate symbol to the list
+symbols_to_ask = symbols + ["USDCAD=X"]
+current_prices = RestClient.get 'http://download.finance.yahoo.com/d/quotes.csv', {:params => {:s => symbols_to_ask.join(','), :f => 'l1'}}
+current_prices = current_prices.split
+
+# For testing
+#current_prices = [18.23,18.02,22.21,29.98,22.60,20.01,91.81,100.06,1.05]
+
+# Current exchange rate is the last price of the list
+rate = current_prices.last.to_f
+print_header(rate)
+
+current_total = 0
+symbols.each_with_index do |symbol, i|
+
+	current_value = current_prices[i].to_f * sizes[i]	
+	current_value *= rate if array_usd[i]
+	current_total += current_value
+	value = values[i]
+	
+	print_line(symbol, value, current_value);
+end
+
+print_separator
+print_line("TOTAL", values.inject(:+), current_total);
