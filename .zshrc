@@ -44,7 +44,6 @@ alias l='ls -la'
 alias lt='ls -lath | less'
 alias lth='ls -lath | head'
 
-
 # Task manager
 alias t='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list tasks'
 alias h='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list home'
@@ -85,7 +84,6 @@ export NUTCH_RUNTIME_HOME=~/java/nutch-1.3/runtime/local
 export ANT_HOME=~/java/apache-ant-1.8.2
 export GROOVY_HOME=~/java/groovy-1.8.2
 export GANT_HOME=~/java/gant-1.9.1
-export LUNR_HOME=~/lunr
 export ANDROID_HOME=~/java/android-sdk-mac_x86
 export GRAILS_HOME=~/java/grails-2.0.0
 export PLAY_HOME=~/java/play-1.2.4
@@ -110,4 +108,7 @@ fi
 PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$M2:$PATH
 
 # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
