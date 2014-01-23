@@ -51,6 +51,9 @@ alias h='python ~/apps/t/t.py --task-dir ~/Dropbox/tasks --list home'
 # Misc
 alias cleansvn='find . -name \.svn -exec rm -rf {} \;'
 
+# VLC
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
 # Grep into folder by file type
 function gg {
  filter=*
@@ -105,7 +108,7 @@ if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$M2:$PATH
+PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$M2:$ANT_HOME/bin:$PATH
 
 # Add RVM to PATH for scripting
 

@@ -5,7 +5,7 @@ require 'rest_client'
 def print_line(symbol, value, current_value)
 	variation = ((current_value - value) / value) * 100
 	sign = "+" if variation >= 0
-	puts "#{symbol}:\t#{value.to_s.ljust(10)}-> #{('%.2f' % current_value).ljust(10)}(#{sign}#{'%.2f' % variation}%)"
+	puts "#{symbol}:\t#{('%.2f' % value).ljust(10)}-> #{('%.2f' % current_value).ljust(10)}(#{sign}#{'%.2f' % variation}%)"
 end
 
 def print_separator
