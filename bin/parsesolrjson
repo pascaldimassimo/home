@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+# http://stackoverflow.com/questions/4622046/how-can-you-check-for-stdin-input-in-a-ruby-1-9-2-script
+# http://stackoverflow.com/questions/273262/best-practices-with-stdin-in-ruby
+
+if STDIN.tty?
+	puts 'your_command | parsesolrjson'
+	exit 1
+end
+
+require 'json'
+
+data = JSON.parse(gets)
+data = data["response"]["docs"]
+puts JSON.pretty_generate(data)

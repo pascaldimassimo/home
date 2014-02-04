@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+if ARGV.length != 1
+        puts "USAGE: jsoncount FILENAME"
+        exit 1
+end
+
+system "java -cp /Users/pascal/apps/jsonutils/jsonutils-1.0.0-jar-with-dependencies.jar com.javisto.jsonutils.CountObjects #{ARGV[0]}"

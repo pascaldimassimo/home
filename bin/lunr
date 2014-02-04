@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+def get_hostname_from_ssh(host)
+        found = false
+        File.readlines("/Users/pascal/.ssh/config").each do |line|
+                line = line.strip
+                if found and line =~ /^HostName\s+(.+)$/
+                        return $1                       
+                end
+                if line == "Host #{host}"
+                        found = true
+                end
+        end
+        return ""       
+end
+
+host_index = -1
+ARGV.each_with_index do |arg, i|
+	if arg == "-h" or arg == "--host"
+		host_index = i + 1
+		break
+	end
+end
+
+if host_index > 0
+	hostname = get_hostname_from_ssh(ARGV[host_index])
+	ARGV[host_index] = hostname unless hostname.empty?
+end
+
+system "java -jar /Users/pascal/apps/lunr/lunr-1.0.2-jar-with-dependencies.jar #{ARGV.join(' ')}"
