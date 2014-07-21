@@ -27,4 +27,7 @@ if host_index > 0
 	ARGV[host_index] = hostname unless hostname.empty?
 end
 
-system "java -jar /Users/pascal/apps/lunr/lunr-1.0.2-jar-with-dependencies.jar #{ARGV.join(' ')}"
+args = ARGV.collect {|x| "\"#{x}\""}.join(" ")
+
+system "java -jar /Users/pascal/apps/lunr/lunr-1.0.3-jar-with-dependencies.jar #{args}"
+#system "java -jar /Users/pascal/javadev/lunr/target/lunr-1.0.3-SNAPSHOT-jar-with-dependencies.jar #{args}"

@@ -70,14 +70,14 @@ function rdiff {
  find $1 -iname $pattern -type f -exec sh -c 'x={}; y=$1/; path=${x#$y}; diff -bq {} $2/$path' _ $1 $2 \;
 }
 
-# PH
-export PH=~/sematext/st-ProjectHub
-
 # Java 6
 #export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 
 # Java 7
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
+
+# Java 8
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
 #export MAHOUT_HOME=~/java/mahout-trunk
 #export HADOOP_HOME=~/java/hadoop-0.20.203.0
@@ -85,13 +85,13 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 export NUTCH_RUNTIME_HOME=~/java/nutch-1.3/runtime/local
 #export HADOOP_CONF_DIR=~/java/hadoop-0.20.203.0/conf
 export ANT_HOME=~/java/apache-ant-1.8.2
-export GROOVY_HOME=~/java/groovy-1.8.2
+export GROOVY_HOME=~/java/groovy-2.2.2
 export GANT_HOME=~/java/gant-1.9.1
 export ANDROID_HOME=~/java/android-sdk-mac_x86
 export GRAILS_HOME=~/java/grails-2.0.0
 export PLAY_HOME=~/java/play-1.2.4
 export SONAR_RUNNER_HOME=~/java/sonar-runner-2.2
-export M2_HOME=~/java/apache-maven-3.1.1
+export M2_HOME=~/java/apache-maven-3.2.1
 
 export M2=$M2_HOME/bin
 export MAVEN_OPTS="-Xms256m -Xmx2g"
@@ -108,7 +108,7 @@ if [ -f ~/.local_vars ]; then
    source ~/.local_vars
 fi
 
-PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$M2:$ANT_HOME/bin:$PATH
+PATH=~/bin:/usr/local/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$SONAR_RUNNER_HOME/bin:$M2:$ANT_HOME/bin:$GROOVY_HOME/bin:$PATH
 
 # Add RVM to PATH for scripting
 
