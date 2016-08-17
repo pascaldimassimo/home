@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+
+# Script inspired from https://www.cabbages-and-kings.net/2015/04/22/launching_gpg_agent_at_login_on_os_x.html
+
+import os
+import re
+import subprocess
+
+import psutil
+
+
+def find_environment_file():
+    config_file = os.path.join(os.path.expanduser("~"), ".gnupg/gpg-agent.conf")
+    env_file = None
+    try:
+        with open(config_file) as fd:
+            for line in fd.readlines():
+                line = line.strip()
+                match = re.match(r"([^ ]+) ([^ ]+)", line)
+                if match and match.group(1) == "write-env-file":
+                    env_file = match.group(2)
+    except IOError as e:
+        raise Exception("Could not open configuration file: {}".format(e))
+
+    if env_file is None:
+        # Use default
+        env_file = os.path.join(os.path.expanduser("~"), ".gpg-agent-info")
+
+    return env_file
+
+
+def parse_environment_file(environment_file):
+    environment = {}
+    try:
+        with open(environment_file) as fd:
+            for line in fd.readlines():
+                line = line.strip()
+                match = re.match(r"([^=]+)=(.*)", line)
+                if match:
+                    name, value = match.groups()
+                    environment[name] = value
+    except IOError as e:
+        raise Exception("Could not open environment file: {}".format(e))
+
+    return environment
+
+
+def main():
+    # Stop if running
+    for process in psutil.process_iter():
+        if process.name() == "gpg-agent":
+            print("Stopping gpg-agent PID {}...".format(process.pid))
+            process.terminate()
+            break
+
+    print("Launching gpg-agent...")
+    subprocess.check_output(["/usr/local/bin/gpg-agent", "--daemon"])
+
+    # Once it is running, parse its environment file
+    env_file = find_environment_file()
+    environment = parse_environment_file(env_file)
+
+    # Set environment for later processes
+    for name, value in environment.items():
+        print("{}={}".format(name, value))
+        subprocess.check_call(["launchctl", "setenv", name, value])
+
+
+if __name__ == "__main__":
+    main()
