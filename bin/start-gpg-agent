@@ -48,10 +48,13 @@ def parse_environment_file(environment_file):
 def main():
     # Stop if running
     for process in psutil.process_iter():
-        if process.name() == "gpg-agent":
-            print("Stopping gpg-agent PID {}...".format(process.pid))
-            process.terminate()
-            break
+        try:
+            if process.name() == "gpg-agent":
+                print("Stopping gpg-agent PID {}...".format(process.pid))
+                process.terminate()
+                break
+        except psutil.NoSuchProcess:            
+            continue
 
     print("Launching gpg-agent...")
     subprocess.check_output(["/usr/local/bin/gpg-agent", "--daemon"])
