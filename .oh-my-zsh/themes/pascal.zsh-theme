@@ -1,15 +1,23 @@
+# Thanks to lukerandall, upon whose theme this is based
 
-if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
-local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+local return_code="%(?..%{$fg_bold[red]%}%? ↵%{$reset_color%})"
 
-PROMPT='%{$fg_bold[$NCOLOR]%}%n%{$fg_bold[green]%}@%m%{$reset_color%} %{$fg_bold[blue]%}%~ \
-$(git_prompt_info)\
-%{$fg[red]%}%(!.#.»)%{$reset_color%} '
-PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
-RPS1='${return_code}'
+function my_git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  GIT_STATUS=$(git_prompt_status)
+  [[ -n $GIT_STATUS ]] && GIT_STATUS=" $GIT_STATUS"
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$GIT_STATUS$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}±%{$fg[yellow]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-ZSH_THEME_GIT_PROMPT_DIRTY="⚡"
+PROMPT='%{$fg_bold[green]%}%n@%m%{$reset_color%} %{$fg_bold[blue]%}%~%{$reset_color%} $(my_git_prompt_info)%{$reset_color%}%B»%b '
+RPS1="${return_code}"
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}("
+ZSH_THEME_GIT_PROMPT_SUFFIX=") %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%%"
+ZSH_THEME_GIT_PROMPT_ADDED="+"
+ZSH_THEME_GIT_PROMPT_MODIFIED="*"
+ZSH_THEME_GIT_PROMPT_RENAMED="~"
+ZSH_THEME_GIT_PROMPT_DELETED="!"
+ZSH_THEME_GIT_PROMPT_UNMERGED="?"
 
