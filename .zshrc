@@ -16,6 +16,8 @@ source $ZSH/oh-my-zsh.sh
 # Disable autocorrection
 unsetopt correct_all
 
+export LC_CTYPE=en_US.UTF-8
+
 # Alias
 alias tailf="tail -f"
 alias f='find . -iname'
