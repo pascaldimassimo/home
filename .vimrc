@@ -11,12 +11,19 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 let g:airline_theme='cool'
+
+if executable('ag')
+	let g:ackprg = 'ag --vimgrep'
+endif
+nnoremap k :Ack!<Space>
+nnoremap K :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 
 
@@ -25,6 +32,10 @@ set noexpandtab
 set shiftwidth=3
 set softtabstop=3
 set tabstop=3
+
+" Use soft wrap and only wrap on space, and not in the middle of a word
+set wrap
+set linebreak
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -49,4 +60,8 @@ nnoremap <leader>l :set list!<CR>
 nnoremap <leader># :b#<CR>
 
 " Show list of buffers and prompt for a buffer index to swith to
-nnoremap gb :ls<CR>:b<Space>
+nnoremap <leader>b :ls<CR>:b<Space>
+
+" Interface with clipboard
+map <Leader>y "+y
+map <Leader>p "+p
